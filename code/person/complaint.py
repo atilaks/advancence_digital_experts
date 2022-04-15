@@ -1,9 +1,7 @@
-from code.person.individual import Individual
-# TODO: METER INDIVIDUAL EN EL INIT
+# from . import Individual
 
-# TODO: POSIBLEMENTE RECICLABLE
 
-class Complaint(Individual):
+class Complaint:
     # def __init__(self, bike):
     #     self._bike = bike
     #

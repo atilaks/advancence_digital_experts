@@ -1,8 +1,10 @@
-from code.person import Agent
-# TODO: NO ME DEJA INCORPORAR AGENT DESDE EL PAQUETE CODE
+from . import Agent
 
 
 class DepartmentManager(Agent):
+    def __init__(self, agent):
+        super().__init__(agent)
+
     @property
     def department(self):
         return self._department

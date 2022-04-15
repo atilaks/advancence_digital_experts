@@ -1,5 +1,4 @@
-from code.person.individual import Individual
-# TODO: METER INDIVIDUAL EN EL INIT
+from . import Individual
 
 
 class Agent(Individual):

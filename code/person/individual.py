@@ -1,10 +1,8 @@
-# TODO: METER INDIVIDUAL EN EL INIT
-
 class Individual:
-    def __init__(self, individual):
-        self._name = individual["name"]
-        self._surname = individual["surname"]
-        self._passport = individual["passport"]
+    def __init__(self, ind):
+        self._name = ind["name"]
+        self._surname = ind["surname"]
+        self._passport = ind["passport"]
 
     @property
     def full_description(self):
