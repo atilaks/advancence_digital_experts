@@ -1,5 +1,7 @@
 class Department:
 
+# TODO: CAMBIAR NOMBRE (ESTO ES EL GESTOR DE DEPARTAMENTOS). HACER ARCHIVO/CLASE DEPARTAMENTO (MIRAR OWNER)
+
     def __init__(self):
         self._department = ["departmentA", "departmentB"]
         self.available_department = True

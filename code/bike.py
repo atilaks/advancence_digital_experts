@@ -1,15 +1,18 @@
 class Bike:
 
-    def __init__(self, bike):
-        self._license = bike["license"]
-        self._color = bike["color"]
-        self._type = bike["type"]
-        self._description = bike["description"]
+    def __init__(self, license_id, color="sin color", bike_type="sin definir",
+                 description="sin descripción"):
+        self._license = license_id
+        self._color = color
+        self._type = bike_type
+        self._description = description
+
+# TODO: CAMBIAR LOS CONSTRUCTURES PARA ELIMINAR DARLO POR DICCIONARIO
 
     @property
     def full_description(self):
-        return {"license": self._license, "color": self._color, "type": self._type,
-                "description": self._description}
+        return {"license": self.license, "color": self.color, "type": self.type,
+                "description": self.description}
 
     @property
     def license(self):

@@ -5,12 +5,13 @@ from code import Bike
 
 class TestOwner(unittest.TestCase):
     def setUp(self) -> None:
-        self.bike_description = {{"license": "00001AAA", "color": "rojo", "type": "carretera",
-                                 "description": "sin descripción"}}
-        self.bike = Bike(self.bike_description)
+        self.bike1 = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
+        self.bike2 = Bike(license_id="00301AAA", color="azul", bike_type="carretera")
+
+        bike_dic = {"b1": self.bike1, "b2": self.bike2}
 
         self.owner_description = {"name": "José", "surname": "García", "passport": "56475215f"}
-        self.owner = Owner(self.owner_description, self.bike)
+        self.owner = Owner(self.owner_description, bike_dic)
 
     def test_define_owner(self):
         # Arrange

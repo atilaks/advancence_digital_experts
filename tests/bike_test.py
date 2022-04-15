@@ -4,9 +4,7 @@ from code import Bike
 
 class TestBike(unittest.TestCase):
     def setUp(self) -> None:
-        self.bike_description = {"license": "00001AAA", "color": "rojo", "type": "carretera",
-                                 "description": "sin descripción"}
-        self.bike = Bike(self.bike_description)
+        self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
 
     def test_define_bike(self):
         # Arrange

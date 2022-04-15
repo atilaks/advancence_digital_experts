@@ -2,11 +2,13 @@ from . import Individual
 
 
 class Owner(Individual):
-    def __init__(self, ind, bike):
+    def __init__(self, ind, bikes):
         super().__init__(ind)
-        self._bike = bike
+        self._bikes = bikes
 
-    def bike_description(self):
-        return self._bike.full_description
+# TODO: LOS TEST FALLAN PORQUE FALTA EL ARGUMENTO BIKE
+    def bike_description(self, bike):
+        return self._bikes[bike].full_description
 
-# TODO: HACER ESCALABLE A QUE PUEDA TENER VARIAS BICIS (con diccionario). *modificar linea 11
+    # def get_bike(self, bike):
+    #     return self._bikes[bike]
