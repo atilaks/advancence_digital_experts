@@ -4,10 +4,8 @@ from code import Agent
 
 class TestAgent(unittest.TestCase):
     def setUp(self) -> None:
-        self.agent_description = {"name": "José", "surname": "García", "passport": "56475215f",
-                                  "police id": "A5826", "department": "departmentA",
-                                  "range": "official"}
-        self.agent = Agent(self.agent_description)
+        self.agent = Agent(name="José", surname="García", passport="56475215f", police_id="A5826",
+                           department="departmentA", range="official")
 
     def test_agent_description(self):
         # Arrange

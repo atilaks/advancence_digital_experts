@@ -2,11 +2,11 @@ from . import Individual
 
 
 class Agent(Individual):
-    def __init__(self, agent):
-        super().__init__(agent)
-        self._police_id = agent["police id"]
-        self._department = agent["department"]
-        self._range = agent["range"]
+    def __init__(self, name, surname, passport, police_id, department, range):
+        super().__init__(name, surname, passport)
+        self._police_id = police_id
+        self._department = department
+        self._range = range
 
     @property
     def agent_description(self):

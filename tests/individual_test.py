@@ -4,12 +4,11 @@ from code.person.individual import Individual
 
 class TestIndividual(unittest.TestCase):
     def setUp(self) -> None:
-        self.individual_description = {"name": "José", "surname": "García", "passport": "56475215f"}
-        self.individual = Individual(self.individual_description)
+        self.individual = Individual(name="José", surname="García", passport="sin registro")
 
     def test_define_individual(self):
         # Arrange
-        expected = {"name": "José", "surname": "García", "passport": "56475215f"}
+        expected = {"name": "José", "surname": "García", "passport": "sin registro"}
 
         # Act
         full_individual_description = self.individual.full_description

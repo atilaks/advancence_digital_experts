@@ -2,8 +2,8 @@ from . import Agent
 
 
 class DepartmentManager(Agent):
-    def __init__(self, agent):
-        super().__init__(agent)
+    def __init__(self, name, surname, passport, police_id, department, range):
+        super().__init__(name, surname, passport, police_id, department, range)
 
     @property
     def department(self):

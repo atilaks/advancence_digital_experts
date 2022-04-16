@@ -5,7 +5,7 @@ class Whistleblower:
         self._bike = bike
         self._complaint = complaint
 
-    def set_whistleblower(self, test):               # REFACTORIZAR
+    def set_whistleblower(self, test):
         counter = 0
         for i in self._whistleblower.keys():
             self._whistleblower[i] = test[counter]

@@ -1,5 +1,4 @@
 class Bike:
-
     def __init__(self, license_id, color="sin color", bike_type="sin definir",
                  description="sin descripción"):
         self._license = license_id
@@ -7,11 +6,9 @@ class Bike:
         self._type = bike_type
         self._description = description
 
-# TODO: CAMBIAR LOS CONSTRUCTURES PARA ELIMINAR DARLO POR DICCIONARIO
-
     @property
     def full_description(self):
-        return {"license": self.license, "color": self.color, "type": self.type,
+        return {"license_id": self.license, "color": self.color, "bike_type": self.type,
                 "description": self.description}
 
     @property

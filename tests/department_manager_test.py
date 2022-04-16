@@ -4,10 +4,8 @@ from code import DepartmentManager
 
 class TestAgent(unittest.TestCase):
     def setUp(self) -> None:
-        self.department_manager_description = {"name": "José", "surname": "García", "passport": "56475215f",
-                                               "police id": "A5826", "department": "departmentA",
-                                               "range": "commissar"}
-        self.department_manager = DepartmentManager(self.department_manager_description)
+        self.department_manager = DepartmentManager(name="José", surname="García", passport="56475215f",
+                                                    police_id="A5826", department="departmentA", range="commissar")
 
     def test_define_agent(self):
         # Arrange

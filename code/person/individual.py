@@ -1,8 +1,8 @@
 class Individual:
-    def __init__(self, ind):
-        self._name = ind["name"]
-        self._surname = ind["surname"]
-        self._passport = ind["passport"]
+    def __init__(self, name, surname, passport="sin registro"):
+        self._name = name
+        self._surname = surname
+        self._passport = passport
 
     @property
     def full_description(self):
