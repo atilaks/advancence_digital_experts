@@ -1,29 +1,23 @@
 import unittest
 from code import Department
-# from . import Agent
+from code import Agent
 
 
 class TestDepartment(unittest.TestCase):
     def setUp(self) -> None:
-        # self.agent1 = Agent(name="José", surname="García", passport="56475215f", police_id="A5826",
-        #                    department="departmentA", range="official")
-        # self.agent2 = Agent(name="Julio", surname="Montero", passport="56564715f", police_id="D5876",
-        #                    department="departmentA", range="comisario")
-        #
-        # agents = {"a1": self.agent1, "a2": self.agent2}
+        self.agent1 = Agent(name="José", surname="García", passport="56475215f", police_id="A5826",
+                            department="departmentA", range="official")
+        self.agent2 = Agent(name="Julio", surname="Montero", passport="56564715f", police_id="D5876",
+                            department="departmentA", range="comisario")
 
-        self.department = Department(name="DepartamentoA", address="calle Colón, 12, Massanassa, 46470")
+        agents = {"a1": self.agent1, "a2": self.agent2}
+
+        self.department = Department(name="DepartamentoA", address="calle Colón, 12, Massanassa, 46470",
+                                     agents=agents)
 
     def test_define_department(self):
-        # Arrange
         expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
-                    "agents": {}}
-
-        # expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
-        #             "agents": {{"name": "José", "surname": "García", "passport": "56475215f",
-        #                         "police_id": "A5826", "department": "departmentA", "range": "official"},
-        #                        {"name": "Julio", "surname": "Montero", "passport": "56564715f",
-        #                         "police_id": "D5876", "department": "departmentA", "range": "comisario"}}}
+                    "agents": {"a1": self.agent1, "a2": self.agent2}}
 
         # Act
         full_department_description = self.department.full_description
@@ -53,37 +47,33 @@ class TestDepartment(unittest.TestCase):
         # Assert
         self.assertEqual(expected, new_address)
 
-    # def test_add_agents(self):
-    #     # Arrange
-    #     expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
-    #                 "agents": {{"name": "José", "surname": "García", "passport": "56475215f",
-    #                             "police_id": "A5826", "department": "departmentA", "range": "official"},
-    #                            {"name": "Julio", "surname": "Montero", "passport": "56564715f",
-    #                             "police_id": "D5876", "department": "departmentA", "range": "comisario"},
-    #                            {"name": "Pepe", "surname": "Otero", "passport": "87946215s",
-    #                             "police_id": "R8626", "department": "departmentA", "range": "official"}}}
-    #
-    #     self.agent3 = Agent(name="Pepe", surname="Otero", passport="87946215s", police_id="R8626",
-    #                         department="departmentA", range="official")
-    #
-    #     # Act
-    #     add_agent = self.department.agents(self.agent3)
-    #
-    #     # Assert
-    #     self.assertEqual(expected, add_agent)
-    #
-    # def test_drop_agents(self):
-    #     # Arrange
-    #     expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
-    #                 "agents": {{"name": "José", "surname": "García", "passport": "56475215f",
-    #                             "police_id": "A5826", "department": "departmentA", "range": "official"}}}
-    #     self.agent = "D5876"
-    #
-    #     # Act
-    #     drop_agent = self.department.agents(self.agent)
-    #
-    #     # Assert
-    #     self.assertEqual(expected, drop_agent)
+    def test_add_agents(self):
+        # Arrange
+        agent3 = Agent(name="Pepe", surname="Otero", passport="87946215s", police_id="R8626",
+                            department="departmentA", range="official")
+
+        expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
+                    "agents": {"a1": self.agent1, "a2": self.agent2, "a3": agent3}}
+
+        # Act
+        self.department.assign_agent("a3", agent3)
+        add_agent = self.department.full_description
+
+        # Assert
+        self.assertEqual(expected, add_agent)
+
+    def test_drop_agents(self):
+        # Arrange
+        expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
+                    "agents": {"a1": self.agent1}}
+        agent = "D5876"
+
+        # Act
+        self.department.remove_agent_by_police_id(agent)
+        update_department = self.department.full_description
+
+        # Assert
+        self.assertEqual(expected, update_department)
 
 
 if __name__ == '__main__':

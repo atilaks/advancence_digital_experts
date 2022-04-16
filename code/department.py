@@ -1,5 +1,7 @@
 class Department:
-    def __init__(self, name, address, agents={}):
+    def __init__(self, name, address, agents=None):
+        if agents is None:
+            agents = {}
         self._name = name
         self._address = address
         self._agents = agents
@@ -35,6 +37,8 @@ class Department:
         self._agents[agent_key] = new_agent
 
     def remove_agent_by_police_id(self, police_id):
-        for i in self._agents:
-            if self._agents[i]["police_id"] == police_id:
-                del self._agents[i]
+        removal = ""
+        for key in self._agents:
+            if self._agents[key].police_id == police_id:
+                removal = key
+        del self._agents[removal]

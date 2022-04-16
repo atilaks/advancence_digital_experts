@@ -1,13 +1,20 @@
-import os
 import requests
-from dotenv import load_dotenv
-
-load_dotenv()
-token = os.getenv("key_google")
+import json
+from code import ApiKeyException
 
 
-url = "https://maps.googleapis.com/maps/api/geocode/json?address=¨concepcion arenal, 12, valencia, 46470¨&key=" + token
+class ApiGeocode:
+    def __init__(self, api_key):
+        self._base_url = "https://maps.googleapis.com/maps/api/geocode/json?"
+        if api_key == None:
+            raise ApiKeyException()
+        self._api_key = api_key
 
-response = requests.request("GET", url, headers={}, data={})
+    def get_request(self, address):
+        url = self._base_url + "address=" + address + "&key=" + self._api_key
+        response = requests.request("GET", url, headers={}, data={})
+        return json.loads(response.text)
 
-print(response.text)
+    def get_coordinates(self, address):
+        response = self.get_request(address)
+        return response["results"][0]["geometry"]["location"]
