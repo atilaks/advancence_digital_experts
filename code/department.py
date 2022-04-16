@@ -1,29 +1,40 @@
 class Department:
+    def __init__(self, name, address, agents={}):
+        self._name = name
+        self._address = address
+        self._agents = agents
 
-# TODO: CAMBIAR NOMBRE (ESTO ES EL GESTOR DE DEPARTAMENTOS). HACER ARCHIVO/CLASE DEPARTAMENTO (MIRAR OWNER)
+#TODO: FALTA ASIGNAR DENUNCIA, CERRAR DENUNCIA Y POLICIAS DISPONIBLES
+#TODO: COMO MARCAR LA DISPONIBILIDAD DE LOS POLICIAS??
 
-    def __init__(self):
-        self._department = ["departmentA", "departmentB"]
-        self.available_department = True
-        self.available_agents = []
-        self.not_available_agents = []
+    @property
+    def full_description(self):
+        return {"name": self.name, "address": self.address, "agents": self.agents}
 
-    def set_department(self, new_department):
-        self._department.append(new_department)
+    @property
+    def name(self):
+        return self._name
 
-    def get_department(self):
-        return self._department
+    @name.setter
+    def name(self, new_name):
+        self._name = new_name
 
-    def set_available_agent(self, agent_id):
-        self.available_agents.append(agent_id)
-        self.not_available_agents.remove(agent_id)
+    @property
+    def address(self):
+        return self._address
 
-    def get_available_list(self):
-        return self.available_agents
+    @address.setter
+    def address(self, new_address):
+        self._address = new_address
 
-    def set_not_available_agent(self, agent_id):
-        self.not_available_agents.append(agent_id)
-        self.available_agents.remove(agent_id)
+    @property
+    def agents(self):
+        return self._agents
 
-    def get_not_available_list(self):
-        return self.not_available_agents
+    def assign_agent(self, agent_key, new_agent):
+        self._agents[agent_key] = new_agent
+
+    def remove_agent_by_police_id(self, police_id):
+        for i in self._agents:
+            if self._agents[i]["police_id"] == police_id:
+                del self._agents[i]

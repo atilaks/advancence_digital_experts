@@ -1,54 +1,67 @@
 import unittest
 from code import Complaint
+# from . import Agent
 
 
 class TestComplaint(unittest.TestCase):
     def setUp(self) -> None:
-        self.complaint_description = {"name": "José", "surname": "García", "passport": "56475215f"}
-        self.complaint = Complaint(self.complaint_description)
+
+        self.complaint = Complaint(date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
+                                   id_complaint=0)
 
     def test_define_complaint(self):
         # Arrange
-        expected = {"name": "José", "surname": "García", "passport": "56475215f"}
+        expected = {"date": "15/03/2022", "address": "calle Las barcas, 8, Alfafar, 46910",
+                    "description": "sin descripción", "status": "desaparecida", "id_complaint": 0}
 
-        # Act
         full_complaint_description = self.complaint.full_description
 
         # Assert
         self.assertEqual(expected, full_complaint_description)
 
-    def test_name_modification(self):
+    def test_date_modification(self):
         # Arrange
-        expected = "José Miguel"
-        self.complaint.name = "José Miguel"
+        expected = "16/03/2022"
+        self.complaint.date = "16/03/2022"
 
         # Act
-        new_name = self.complaint.name
+        new_date = self.complaint.date
 
         # Assert
-        self.assertEqual(expected, new_name)
+        self.assertEqual(expected, new_date)
 
-    def test_surname_modification(self):
+    def test_address_modification(self):
         # Arrange
-        expected = "Gracia"
-        self.complaint.surname = "Gracia"
+        expected = "calle Las barcas, 3, Alfafar, 46910"
+        self.complaint.address = "calle Las barcas, 3, Alfafar, 46910"
 
         # Act
-        new_surname = self.complaint.surname
+        new_date = self.complaint.address
 
         # Assert
-        self.assertEqual(expected, new_surname)
+        self.assertEqual(expected, new_date)
 
-    def test_passport_modification(self):
+    def test_description_modification(self):
         # Arrange
-        expected = "56475215t"
-        self.complaint.passport = "56475215t"
+        expected = "oxidada"
+        self.complaint.description = "oxidada"
 
         # Act
-        new_passport = self.complaint.passport
+        new_date = self.complaint.description
 
         # Assert
-        self.assertEqual(expected, new_passport)
+        self.assertEqual(expected, new_date)
+
+    def test_status_modification(self):
+        # Arrange
+        expected = "encontrada"
+        self.complaint.status = "encontrada"
+
+        # Act
+        new_date = self.complaint.status
+
+        # Assert
+        self.assertEqual(expected, new_date)
 
 
 if __name__ == '__main__':
