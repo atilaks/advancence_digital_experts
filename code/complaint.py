@@ -68,8 +68,6 @@ class Complaint:
     def _bike_reported(self):
         self._bike = self._owner.last_bike()
 
-
-# TODO: LA FUNCIÓN NO ENCUENTRA EL API_KEY
     def get_coordinates(self):
         if self._lat is None and self._lng is None:
             load_dotenv()
