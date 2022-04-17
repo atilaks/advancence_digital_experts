@@ -1,5 +1,5 @@
 import os
-from code import ApiGeocode
+from code import ApiGeocode, ComplaintNotFoundException
 from dotenv import load_dotenv
 
 
@@ -81,9 +81,10 @@ class Department:
             if self._complaints[key].id_complaint == id_complaint:
                 complaint_to_be_removed = key
                 break
+        else:
+            raise ComplaintNotFoundException
         del self._complaints[complaint_to_be_removed]
         self._set_assigned_agents()
-        # TODO: PONER API MAIL
 
     def get_coordinates(self):
         if self._lat is None and self._lng is None:

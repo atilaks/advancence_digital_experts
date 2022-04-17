@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 
 class Complaint:
-    def __init__(self, owner, license_id, date, address, id_complaint, description="sin descripción", status="desaparecida"):
+    def __init__(self, owner, license_id, date, address, id_complaint, description="sin descripción",
+                 status="desaparecida"):
         self._owner = owner
         self._bike = None
         self._date = date
@@ -26,6 +27,10 @@ class Complaint:
     @property
     def bike(self):
         return self._bike
+
+    @property
+    def owner(self):
+        return self._owner
 
     @property
     def date(self):

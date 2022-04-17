@@ -1,0 +1,2 @@
+class DepartmentWithActiveComplaintsException(Exception):
+    pass

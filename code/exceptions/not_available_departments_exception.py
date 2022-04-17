@@ -1,0 +1,2 @@
+class NotAvailableDepartmentsException(Exception):
+    pass

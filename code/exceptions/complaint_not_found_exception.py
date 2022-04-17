@@ -1,0 +1,2 @@
+class ComplaintNotFoundException(Exception):
+    pass
