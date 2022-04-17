@@ -90,7 +90,7 @@ class TestDepartment(unittest.TestCase):
         self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
         a_bike = {"b1": self.bike}
         owner = Owner(a_bike, name="José", surname="García")
-        complaint = Complaint(owner, date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
+        complaint = Complaint(owner, "00001AAA", date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
 
         expected = {'a1': complaint}
 
@@ -106,7 +106,7 @@ class TestDepartment(unittest.TestCase):
         self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
         a_bike = {"b1": self.bike}
         owner = Owner(a_bike, name="José", surname="García")
-        complaint = Complaint(owner, date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
+        complaint = Complaint(owner, "00001AAA", date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
         self.department.assign_complaint(complaint)
 
         expected = ["a1"]
@@ -132,7 +132,7 @@ class TestDepartment(unittest.TestCase):
         self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
         a_bike = {"b1": self.bike}
         owner = Owner(a_bike, name="José", surname="García")
-        complaint = Complaint(owner, date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
+        complaint = Complaint(owner, "00001AAA", date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910", id_complaint=0)
         self.department.assign_complaint(complaint)
         id_complaint = complaint.id_complaint
         expected = {}

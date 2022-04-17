@@ -8,7 +8,7 @@ class TestBike(unittest.TestCase):
 
     def test_define_bike(self):
         # Arrange
-        expected = {"license": "00001AAA", "color": "rojo", "type": "carretera",
+        expected = {"license_id": "00001AAA", "color": "rojo", "bike_type": "carretera",
                     "description": "sin descripción"}
 
         # Act

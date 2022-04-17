@@ -15,3 +15,8 @@ class Owner(Individual):
             key = i
             break
         return self._bikes[key].full_description
+
+    def bike_by_license_id(self, license_id):
+        for key in self._bikes:
+            if self._bikes[key].license is license_id:
+                return self._bikes[key]

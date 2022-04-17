@@ -2,6 +2,7 @@ import os
 from code import ApiGeocode
 from dotenv import load_dotenv
 
+
 class Department:
     def __init__(self, name, address, agents=None):
         if agents is None:

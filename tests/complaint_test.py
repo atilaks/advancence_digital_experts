@@ -5,11 +5,11 @@ from code import Complaint, Bike, Owner
 class TestComplaint(unittest.TestCase):
     def setUp(self) -> None:
         self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
-        a_bike = {"b1": self.bike}
+        self.a_bike = {"b1": self.bike}
 
-        owner = Owner(a_bike, name="José", surname="García")
+        owner = Owner(self.a_bike, name="José", surname="García")
 
-        self.complaint = Complaint(owner, date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
+        self.complaint = Complaint(owner, "00001AAA", date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
                                    id_complaint=0)
 
     def test_define_complaint(self):
@@ -71,8 +71,7 @@ class TestComplaint(unittest.TestCase):
 
     def test_bike_reported(self):
         # Arrange
-        expected = {"license_id": "00001AAA", "color": "rojo", "bike_type": "carretera",
-                    "description": "sin descripción"}
+        expected = self.bike
 
         # Act
         bike = self.complaint.bike
@@ -83,13 +82,13 @@ class TestComplaint(unittest.TestCase):
     def test_api_geocode(self):
         # Arrange
         expected = {"lat": 39.4700312, "lng": -0.3743573}
-        # TODO: LA FUNCIÓN NO ENCUENTRA EL API_KEY
 
         # Act
         address_stole = self.complaint.get_coordinates()
 
         # Assert
-        self.assertAlmostEqual(expected, address_stole)
+        self.assertAlmostEqual(expected["lat"], address_stole["lat"])
+        self.assertAlmostEqual(expected["lng"], address_stole["lng"])
 
 
 if __name__ == '__main__':

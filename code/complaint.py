@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 
 
 class Complaint:
-    def __init__(self, owner, date, address, id_complaint, description="sin descripción", status="desaparecida"):
+    def __init__(self, owner, license_id, date, address, id_complaint, description="sin descripción", status="desaparecida"):
         self._owner = owner
-        self._bike = {}
+        self._bike = None
         self._date = date
         self._address = address
         self._id_complaint = id_complaint
@@ -14,14 +14,14 @@ class Complaint:
         self._status = status
         self._lat = None
         self._lng = None
-        self._bike_reported()
+        self._bike_reported(license_id)
 
 # TODO: HACER QUE LA ID LA GENERE ALEATORIAMENTE
 
     @property
     def full_description(self):
-        return {"owner": self._owner.full_description, "bike": self.bike, "date": self.date, "address": self.address, "description": self.description,
-                "status": self.status, "id_complaint": self.id_complaint}
+        return {"owner": self._owner.full_description, "bike": self.bike.full_description, "date": self.date, "address": self.address,
+                "description": self.description, "status": self.status, "id_complaint": self.id_complaint}
 
     @property
     def bike(self):
@@ -65,8 +65,8 @@ class Complaint:
     def id_complaint(self):
         return self._id_complaint
 
-    def _bike_reported(self):
-        self._bike = self._owner.last_bike()
+    def _bike_reported(self, license_id):
+        self._bike = self._owner.bike_by_license_id(license_id)
 
     def get_coordinates(self):
         if self._lat is None and self._lng is None:
