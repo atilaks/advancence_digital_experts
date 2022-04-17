@@ -17,8 +17,6 @@ class Complaint:
         self._lng = None
         self._bike_reported(license_id)
 
-# TODO: HACER QUE LA ID LA GENERE ALEATORIAMENTE
-
     @property
     def full_description(self):
         return {"owner": self._owner.full_description, "bike": self.bike.full_description, "date": self.date, "address": self.address,

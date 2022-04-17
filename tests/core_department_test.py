@@ -138,6 +138,23 @@ class TestCoreDepartment(unittest.TestCase):
         # Assert
         self.assertEqual(expected, info)
 
+    def test_register_complaint(self):
+        # Arrange
+        bike_id = "00001AAA"
+        bike_data = {"license": bike_id, "color": "rojo", "type": "carretera", "name": "bici1"}
+        owner_data = {"name": "José", "surname": "García"}
+        date = "17/04/2022"
+        address = "calle Las barcas, 8, Alfafar, 46910"
+        expected = {"bike_id": bike_id, "complaint_id": 0, "department_name": "DepartamentoA",
+                    "owner_passport": "sin registro"}
+
+        # Act
+        self.core_department.register_complaint(bike_data, owner_data, date, address)
+        info = self.core_department.get_info_by_bike_id(bike_id)
+
+        # Assert
+        self.assertEqual(expected, info)
+
 
 if __name__ == '__main__':
     unittest.main()

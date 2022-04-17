@@ -1,4 +1,5 @@
-from code import DepartmentWithActiveComplaintsException, NotAvailableDepartmentsException, ComplaintNotFoundException
+from code import DepartmentWithActiveComplaintsException, NotAvailableDepartmentsException, ComplaintNotFoundException, \
+    Bike, Owner, Complaint
 
 
 class CoreDepartment:
@@ -7,8 +8,26 @@ class CoreDepartment:
         self._department_unavailability = []
         self._departments = {}
         self._complaints = {}
+        self._id_complaint = 0
         for key in deparments:
             self.add_department(key, deparments[key])
+
+    def register_complaint(self, bike_data, owner_data, date, address, description="sin descripción",
+                           status="desaparecida"):
+        if "description" not in bike_data.keys():
+            bike_data["description"] = "sin descripción"
+        if "color" not in bike_data.keys():
+            bike_data["color"] = "sin color"
+        if "bike_type" not in bike_data.keys():
+            bike_data["bike_type"] = "sin definir"
+        if "passport" not in owner_data.keys():
+            owner_data["passport"] = "sin registro"
+
+        bike = Bike(bike_data["license"], bike_data["color"], bike_data["type"], bike_data["description"])
+        owner = Owner({bike_data["name"]: bike}, owner_data["name"], owner_data["surname"], owner_data["passport"])
+        complaint = Complaint(owner, bike.license, date, address, self._id_complaint, description, status)
+        self._id_complaint += 1
+        self.assign_complaint(complaint)
 
     def assign_complaint(self, complaint):
         for department in self.departments:
@@ -84,6 +103,3 @@ class CoreDepartment:
         owner_passport = complaint_found.owner.passport
         return {"bike_id": bike_found_id, "complaint_id": complaint_id, "department_name": department_name,
                 "owner_passport": owner_passport}
-
-
-# TODO: BUSCAR A PARTIR DE LA BICI(ID) EL NUMERO DE DENUNCIA (es el punto 6)
