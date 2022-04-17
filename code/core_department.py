@@ -1,16 +1,12 @@
 class CoreDepartment:
+    def __init__(self):
+        self.department_availability = []
 
-    @property
-    def full_description(self):
-        return {"license_id": self.license, "color": self.color, "bike_type": self.type,
-                "description": self.description}
+    def assign_complaint(self, agent, complaint):
+        pass
 
-    @property
-    def license(self):
-        return self._license
+# TODO: UTILIZAR LA LOGICA DE DEPARTAMENTO CON AGENTS PARA HACER CORE CON DEPARTAMENTOS
 
-    @license.setter
-    def license(self, new_license):
-        self._license = new_license
-
-# TODO: FALTA TODO
+# TODO: MIRAR CON _COMPLAINTS DEL DEPARTAMENTO. CAMBIAR AGENTE POR DEPARTAMENTO(diccionario con las keys como departamento)
+# TODO: DICCIONARIO DE TODOS LOS DEPARTAMENTOS Y DICCIONARIO DE DENUNCIAS CON LAS KEYS DE LOS DEPARTAMENTOS
+# TODO: BUSCAR A PARTIR DE LA BICI(ID) EL NUMERO DE DENUNCIA (es el punto 6)

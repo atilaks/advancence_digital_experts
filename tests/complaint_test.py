@@ -1,6 +1,5 @@
 import unittest
 from code import Complaint
-# from . import Agent
 
 
 class TestComplaint(unittest.TestCase):

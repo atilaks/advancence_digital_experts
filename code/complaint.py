@@ -1,3 +1,7 @@
+import os
+from code import ApiGeocode
+from dotenv import load_dotenv
+
 class Complaint:
     def __init__(self, date, address, id_complaint, description="sin descripción", status="desaparecida"):
         self._date = date
@@ -5,8 +9,14 @@ class Complaint:
         self._id_complaint = id_complaint
         self._description = description
         self._status = status
+        self._lat = None
+        self._lng = None
+
+# TODO: METER OWNER PARA VER OWNER Y BICI
 
 # TODO: HACER QUE LA ID LA GENERE ALEATORIAMENTE
+
+# TODO: HACER TEST DE API
 
     @property
     def full_description(self):
@@ -28,6 +38,8 @@ class Complaint:
     @address.setter
     def address(self, new_address):
         self._address = new_address
+        self._lat = None
+        self._lng = None
 
     @property
     def description(self):
@@ -48,3 +60,13 @@ class Complaint:
     @property
     def id_complaint(self):
         return self._id_complaint
+
+    def get_coordinates(self):
+        if self._lat is None and self._lng is None:
+            load_dotenv()
+            self.token = os.getenv("key_google")
+            self.geocode = ApiGeocode(self.token)
+            request = self.geocode.get_coordinates(self._address)
+            self._lat = request["lat"]
+            self._lng = request["lng"]
+        return {"lat": self._lat, "lng": self._lng}

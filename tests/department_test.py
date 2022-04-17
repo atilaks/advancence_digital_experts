@@ -1,6 +1,7 @@
 import unittest
 from code import Department
 from code import Agent
+from code import Complaint
 
 
 class TestDepartment(unittest.TestCase):
@@ -71,6 +72,27 @@ class TestDepartment(unittest.TestCase):
         # Act
         self.department.remove_agent_by_police_id(agent)
         update_department = self.department.full_description
+
+        # Assert
+        self.assertEqual(expected, update_department)
+
+    def test_assign(self):
+        # Arrange
+        expected = {"name": "DepartamentoA", "address": "calle Colón, 12, Massanassa, 46470",
+                    "agents": {"a1": self.agent1}}
+        id_complaint = 0
+        complaint = Complaint(date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
+                                   id_complaint=id_complaint)
+
+        # Act
+        self.department.assign_complaint(complaint)
+        assigned_agents = self.department.assigned_agents(id_complaint)
+        not_assigned_agents = self.department.not_assigned_agent()
+        close_complaint = self.department.close_complaint(id_complaint)
+
+        # assigned_complaint = self.department.assigned_complaint(police_id)
+
+        # TODO: HACER TRES O CUATRO TEST DE ESTE
 
         # Assert
         self.assertEqual(expected, update_department)
