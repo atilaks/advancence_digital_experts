@@ -1,17 +1,24 @@
 import unittest
-from code import Complaint
+from code import Complaint, Bike, Owner
 
 
 class TestComplaint(unittest.TestCase):
     def setUp(self) -> None:
+        self.bike = Bike(license_id="00001AAA", color="rojo", bike_type="carretera")
+        a_bike = {"b1": self.bike}
 
-        self.complaint = Complaint(date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
+        owner = Owner(a_bike, name="José", surname="García")
+
+        self.complaint = Complaint(owner, date="15/03/2022", address="calle Las barcas, 8, Alfafar, 46910",
                                    id_complaint=0)
 
     def test_define_complaint(self):
         # Arrange
-        expected = {"date": "15/03/2022", "address": "calle Las barcas, 8, Alfafar, 46910",
-                    "description": "sin descripción", "status": "desaparecida", "id_complaint": 0}
+        expected = {'owner': {'name': 'José', 'passport': 'sin registro', 'surname': 'García'},
+                    "bike": {"license_id": "00001AAA", "color": "rojo", "bike_type": "carretera",
+                             "description": "sin descripción"}, "date": "15/03/2022",
+                    "address": "calle Las barcas, 8, Alfafar, 46910", "description": "sin descripción",
+                    "status": "desaparecida", "id_complaint": 0}
 
         full_complaint_description = self.complaint.full_description
 
@@ -61,6 +68,27 @@ class TestComplaint(unittest.TestCase):
 
         # Assert
         self.assertEqual(expected, new_date)
+
+    def test_bike_reported(self):
+        # Arrange
+        expected = {"license_id": "00001AAA", "color": "rojo", "bike_type": "carretera",
+                    "description": "sin descripción"}
+
+        # Act
+        bike = self.complaint.bike
+
+        # Assert
+        self.assertEqual(expected, bike)
+
+    def test_api_geocode(self):
+        # Arrange
+        expected = {"lat": 39.4700312, "lng": -0.3743573}
+
+        # Act
+        address_stole = self.complaint.get_coordinates()
+
+        # Assert
+        self.assertAlmostEqual(expected, address_stole)
 
 
 if __name__ == '__main__':

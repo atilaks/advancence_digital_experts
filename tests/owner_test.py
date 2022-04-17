@@ -54,17 +54,6 @@ class TestOwner(unittest.TestCase):
         # Assert
         self.assertEqual(expected, new_passport)
 
-    def test_bike_description(self):
-        # Arrange
-        expected = "56475215t"
-        self.owner.passport = "56475215t"
-
-        # Act
-        new_passport = self.owner.passport
-
-        # Assert
-        self.assertEqual(expected, new_passport)
-
     def test_first_bike_of_owner_with_two_bikes(self):
         # Arrange
         expected = {"license_id": "00001AAA", "color": "rojo", "bike_type": "carretera",
@@ -83,6 +72,17 @@ class TestOwner(unittest.TestCase):
 
         # Act
         full_owner_description = self.owner.bike_description("b2")
+
+        # Assert
+        self.assertEqual(expected, full_owner_description)
+
+    def test_last_bike(self):
+        # Arrange
+        expected = {"license_id": "00301AAA", "color": "azul", "bike_type": "carretera",
+                    "description": "sin descripción"}
+
+        # Act
+        full_owner_description = self.owner.last_bike()
 
         # Assert
         self.assertEqual(expected, full_owner_description)

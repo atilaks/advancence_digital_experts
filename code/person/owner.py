@@ -9,5 +9,9 @@ class Owner(Individual):
     def bike_description(self, bike):
         return self._bikes[bike].full_description
 
-    # def get_bike(self, bike):
-    #     return self._bikes[bike]
+    def last_bike(self):
+        key = 0
+        for i in reversed(self._bikes.keys()):
+            key = i
+            break
+        return self._bikes[key].full_description

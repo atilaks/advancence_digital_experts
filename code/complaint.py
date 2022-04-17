@@ -2,8 +2,11 @@ import os
 from code import ApiGeocode
 from dotenv import load_dotenv
 
+
 class Complaint:
-    def __init__(self, date, address, id_complaint, description="sin descripción", status="desaparecida"):
+    def __init__(self, owner, date, address, id_complaint, description="sin descripción", status="desaparecida"):
+        self._owner = owner
+        self._bike = {}
         self._date = date
         self._address = address
         self._id_complaint = id_complaint
@@ -11,17 +14,18 @@ class Complaint:
         self._status = status
         self._lat = None
         self._lng = None
-
-# TODO: METER OWNER PARA VER OWNER Y BICI
+        self._bike_reported()
 
 # TODO: HACER QUE LA ID LA GENERE ALEATORIAMENTE
 
-# TODO: HACER TEST DE API
-
     @property
     def full_description(self):
-        return {"date": self.date, "address": self.address, "description": self.description,
+        return {"owner": self._owner.full_description, "bike": self.bike, "date": self.date, "address": self.address, "description": self.description,
                 "status": self.status, "id_complaint": self.id_complaint}
+
+    @property
+    def bike(self):
+        return self._bike
 
     @property
     def date(self):
@@ -61,6 +65,11 @@ class Complaint:
     def id_complaint(self):
         return self._id_complaint
 
+    def _bike_reported(self):
+        self._bike = self._owner.last_bike()
+
+
+# TODO: LA FUNCIÓN NO ENCUENTRA EL API_KEY
     def get_coordinates(self):
         if self._lat is None and self._lng is None:
             load_dotenv()

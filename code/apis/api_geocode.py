@@ -6,7 +6,7 @@ from code import ApiKeyException
 class ApiGeocode:
     def __init__(self, api_key):
         self._base_url = "https://maps.googleapis.com/maps/api/geocode/json?"
-        if api_key == None:
+        if api_key is None:
             raise ApiKeyException()
         self._api_key = api_key
 
