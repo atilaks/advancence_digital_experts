@@ -8,8 +8,6 @@ from code import ApiKeyException
             + Get_request: Generando la url, devuelve el Json de respuesta de la API.
             + Get_coordinates: Extrae del archivo de respuesta las coordenadas de geolocalización."""
 
-# TODO: REVISAR LINEAS DE LAS EXCEPCIONES
-
 
 class ApiGeocode:
     def __init__(self, api_key):
