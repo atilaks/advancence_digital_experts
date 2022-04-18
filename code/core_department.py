@@ -1,5 +1,19 @@
-from code import DepartmentWithActiveComplaintsException, NotAvailableDepartmentsException, ComplaintNotFoundException, \
-    Bike, Owner, Complaint
+from code import DepartmentWithActiveComplaintsException, NotAvailableDepartmentsException, \
+    ComplaintNotFoundException, Bike, Owner, Complaint
+
+"""Clase CoreDepartment: Genera un departamento central y gestiona departamentos.
+        - Constructor: Recibe datos de uno o unos departamentos iniciales.
+        - Propiedades: 
+            + departments, complaints, department_availability: Contiene un getter para devolver 
+              el parámetro correspondiente.
+        - Métodos:
+            + add_department: Crea un departamento nuevo.
+            + remove_department_by_name: Elimina un departamento desde el nombre del departamento.
+            + register_complaint: Registra una denuncia.
+            + assign_complaint: Asigna una denuncia a un departamento disponible.
+            + close_complaint: Cierra una denuncia por la identificación de denuncia aportada.
+            + get_info_by_bike_id: Devuelve la información de la bici desde la identificación de esta.
+            """
 
 
 class CoreDepartment:
@@ -11,6 +25,31 @@ class CoreDepartment:
         self._id_complaint = 0
         for key in deparments:
             self.add_department(key, deparments[key])
+
+    @property
+    def departments(self):
+        return self._departments
+
+    @property
+    def complaints(self):
+        return self._complaints
+
+    @property
+    def department_availability(self):
+        return self._department_availability
+
+    def add_department(self, key, department):
+        self._departments[key] = department
+        self._complaints[key] = []
+
+    def remove_department_by_name(self, department_name):
+        removal = ""
+        for key in self._departments:
+            if self._departments[key].name == department_name:
+                removal = key
+                if len(self.complaints[key]) > 0:
+                    raise DepartmentWithActiveComplaintsException
+        del self._departments[removal]
 
     def register_complaint(self, bike_data, owner_data, date, address, description="sin descripción",
                            status="desaparecida"):
@@ -37,31 +76,6 @@ class CoreDepartment:
                 break
         else:
             raise NotAvailableDepartmentsException
-
-    @property
-    def departments(self):
-        return self._departments
-
-    @property
-    def complaints(self):
-        return self._complaints
-
-    def add_department(self, key, department):
-        self._departments[key] = department
-        self._complaints[key] = []
-
-    @property
-    def department_availability(self):
-        return self._department_availability
-
-    def remove_department_by_name(self, department_name):
-        removal = ""
-        for key in self._departments:
-            if self._departments[key].name == department_name:
-                removal = key
-                if len(self.complaints[key]) > 0:
-                    raise DepartmentWithActiveComplaintsException
-        del self._departments[removal]
 
     def close_complaint(self, id_complaint):
         complaint_to_be_removed = None

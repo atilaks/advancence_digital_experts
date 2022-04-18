@@ -1,3 +1,11 @@
+"""Clase Individual: Clase madre para generar personas con distintos roles.
+        - Constructor: Recibe datos genéricos de cualquier individuo.
+        - Propiedades:
+            + full_description: Devuelve la descripción completa como individuo.
+            + name, surname, passport: Cada una contiene un getter para devolver.
+              y un setter para otorgar el parámetro correspondiente."""
+
+
 class Individual:
     def __init__(self, name, surname, passport="sin registro"):
         self._name = name

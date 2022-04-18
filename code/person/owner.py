@@ -1,5 +1,12 @@
 from . import Individual
 
+"""Clase Owner: Clase con herencia de Individual que genera individuos con rol de propietario.
+        - Constructor: Recibe datos de individuo mas los datos de una bicicleta almacenados en un diccionario.
+        - Métodos:
+            + bike_description: Devuelve la descripción completa de la bici consultada.
+            + last_bike: Devuelve la última bici registrada por el propietario.
+            + bike_by_license_id: Devuelve la llave del diccionario correspondiente a la identificación de bici."""
+
 
 class Owner(Individual):
     def __init__(self, bikes, name, surname, passport="sin registro"):

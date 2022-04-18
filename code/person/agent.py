@@ -1,5 +1,15 @@
 from . import Individual
 
+"""Clase Agent: Clase con herencia de Individual que genera individuos con rol de agente de policía.
+        - Constructor: Recibe datos de individuo mas los datos correspondientes a policía.
+        - Propiedades: 
+            + agent_description: Devuelve la descripción completa como policía.
+            + all_features: Devuelve la descripción completa como individuo con rol de policía.
+            + police_id: Contiene un getter para devolver y un setter para otorgar el parámetro correspondiente.
+            + department, range: Contiene un getter para devolver el parámetro correspondiente.
+            
+    *Los policías no tienen capacidad para cambiar de departamento o rango"""
+
 
 class Agent(Individual):
     def __init__(self, name, surname, passport, police_id, department, range):

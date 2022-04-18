@@ -1,3 +1,11 @@
+"""Clase Bike: Genera bicicletas.
+        - Constructor: Recibe los parámetros descriptivos de la bicicleta.
+        - Propiedades:
+            + full_description: Devuelve la descripción completa de la bicicleta.
+            + license, color, type, description: Contiene un getter para devolver y un setter para otorgar
+            el parámetro correspondiente."""
+
+
 class Bike:
     def __init__(self, license_id, color="sin color", bike_type="sin definir",
                  description="sin descripción"):

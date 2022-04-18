@@ -2,6 +2,23 @@ import os
 from code import ApiGeocode, ComplaintNotFoundException
 from dotenv import load_dotenv
 
+"""Clase Department: Genera y gestiona departamentos de policía.
+        - Constructor: Recibe datos del departamento y sus agentes asignados.
+        - Propiedades: 
+            + full_description: Devuelve la descripción completa como departamento.
+            + name, address: Contiene un getter para devolver y un setter para otorgar el parámetro correspondiente.
+            + agents: Contiene un getter para devolver el parámetro correspondiente.
+            + complaints: Devuelve las denuncias.
+            + assigned_agents: Devuelve agentes con denuncias.
+            + unassigned_agents: Devuelve agentes sin denuncias.
+        - Métodos:
+            + _set_assigned_agents: Ordena agentes en las listas.
+            + assign_agent: Agrega un agente al departamento.
+            + remove_agent_by_police_id: Elimina un policía desde la identificación de policía aportada.
+            + assign_complaint: Asigna una denuncia a un policía disponible.
+            + close_complaint: Cierra una denuncia por la identificación de denuncia aportada.
+            + get_coordinates: Devuelve las coordenadas del Departamento."""
+
 
 class Department:
     def __init__(self, name, address, agents=None):

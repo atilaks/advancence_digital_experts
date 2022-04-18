@@ -2,6 +2,17 @@ import os
 from code import ApiGeocode
 from dotenv import load_dotenv
 
+"""Clase Complaint: Genera denuncias.
+        - Constructor: Recibe propietario, identificador de bicicleta y descripciones específicas de la denuncia.
+        - Propiedades: 
+            + full_description: Devuelve la descripción completa de la denuncia.
+            + date, address, description, status: Contiene un getter para devolver y un setter para otorgar 
+            el parámetro correspondiente.
+            + bike, owner, id_complaint: Contiene un getter para devolver el parámetro correspondiente.
+        - Métodos:
+            + _bike_reported: Reporta una bicicleta robada.
+            + get_coordinates: Devuelve las coordenadas de la dirección de robo."""
+
 
 class Complaint:
     def __init__(self, owner, license_id, date, address, id_complaint, description="sin descripción",
@@ -19,8 +30,9 @@ class Complaint:
 
     @property
     def full_description(self):
-        return {"owner": self._owner.full_description, "bike": self.bike.full_description, "date": self.date, "address": self.address,
-                "description": self.description, "status": self.status, "id_complaint": self.id_complaint}
+        return {"owner": self._owner.full_description, "bike": self.bike.full_description, "date": self.date,
+                "address": self.address, "description": self.description, "status": self.status,
+                "id_complaint": self.id_complaint}
 
     @property
     def bike(self):
@@ -29,6 +41,10 @@ class Complaint:
     @property
     def owner(self):
         return self._owner
+
+    @property
+    def id_complaint(self):
+        return self._id_complaint
 
     @property
     def date(self):
@@ -63,10 +79,6 @@ class Complaint:
     @status.setter
     def status(self, new_status):
         self._status = new_status
-
-    @property
-    def id_complaint(self):
-        return self._id_complaint
 
     def _bike_reported(self, license_id):
         self._bike = self._owner.bike_by_license_id(license_id)
