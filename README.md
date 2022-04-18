@@ -1,5 +1,3 @@
-# advancence_digital_experts
-
 # jerarquía de archivos:
   Programa
     core_department
